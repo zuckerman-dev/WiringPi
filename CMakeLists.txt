@@ -145,6 +145,8 @@ target_include_directories(${PROJECT_NAME}
 
 add_executable(wiringpi-gpio gpio/gpio.c gpio/readall.c)
 target_link_libraries(wiringpi-gpio ${PROJECT_NAME} ${PROJECT_NAME}Dev Threads::Threads rt crypt m)
+set_target_properties(wiringpi-gpio PROPERTIES OUTPUT_NAME gpio)
+install(TARGETS wiringpi-gpio DESTINATION ${CMAKE_INSTALL_BINDIR})
 target_include_directories(wiringpi-gpio
     PRIVATE 
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/wiringPiD>
