@@ -6,12 +6,17 @@ class WiringPiConan(ConanFile):
    settings = "os", "compiler", "build_type", "arch"
    generators = "cmake", "gcc", "txt", "cmake_find_package"
    default_options = {}
-   exports_sources = "*"
 
-   @property
-   def _source_subfolder(self):
-      return "source_subfolder"
-      
+   scm = {
+      "type" : "git",
+      "subfolder" : ".",
+      "url" : "https://github.com/zuckerman-dev/WiringPi.git",
+      "revision" : "auto", 
+      "submodule" : "recursive"
+   }
+   no_copy_source = True
+   keep_imports = True
+   
    def build(self):
       cmake = CMake(self)
       cmake.configure()
